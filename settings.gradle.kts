@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "NY Times"
 include(":app")
- 
+include(":core",":core:network",":core:database",":core:utils", ":core:ui")
+include(":features", ":features:home", ":features:Details")
