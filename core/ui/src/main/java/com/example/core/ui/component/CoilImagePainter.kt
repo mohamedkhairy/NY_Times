@@ -14,7 +14,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 
 @Composable
-fun CoilImagePainter(imageUrl: String): AsyncImagePainter {
+fun CoilImagePainter(imageUrl: String?): AsyncImagePainter {
 
 
     val painter = rememberAsyncImagePainter(

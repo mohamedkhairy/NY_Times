@@ -71,11 +71,11 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-//    modules
-//    implementation(project(":core:utils"))
-//    implementation(project(":core:ui"))
-//    implementation(project(":features:home"))
-//    implementation(project(":features:Details"))
+    modules
+    implementation(project(":core:utils"))
+    implementation(project(":core:ui"))
+    implementation(project(":features:home"))
+    implementation(project(":features:Details"))
 
 
 
