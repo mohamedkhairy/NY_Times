@@ -11,7 +11,7 @@ data class NYTimesMostPopularResponse(
     @SerialName("num_results")
     val numResults: Int,
     @SerialName("results")
-    val articles: List<Article>?,
+    val articleResponses: List<ArticleResponse>?,
     @SerialName("status")
     val status: String
 )

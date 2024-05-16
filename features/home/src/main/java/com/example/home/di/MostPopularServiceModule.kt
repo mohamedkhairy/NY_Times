@@ -11,7 +11,7 @@ import io.ktor.client.HttpClient
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object ImageSearchServiceModule {
+object MostPopularServiceModule {
 
     @Provides
     fun provideImageSearchService(httpClient: HttpClient): MostPopularService {

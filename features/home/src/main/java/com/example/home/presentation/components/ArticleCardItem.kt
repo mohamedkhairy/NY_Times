@@ -16,19 +16,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.core.ui.component.CoilImagePainter
-import com.example.utils.model.Hit
+import com.example.sharedData.model.Article
 
 @Composable
-fun ImageCardItem(
-    imageHit: Hit,
-    openDetails: (Hit) -> Unit
+fun ArticleCardItem(
+    article: Article,
+    openDetails: (Article) -> Unit
 ) {
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { openDetails(imageHit) }
+            .clickable { openDetails(article) }
     ) {
 
         Column(
@@ -38,7 +38,7 @@ fun ImageCardItem(
         {
 
             Image(
-                painter = CoilImagePainter(imageUrl = imageHit.previewURL),
+                painter = CoilImagePainter(imageUrl = article.images?.first()),
                 contentDescription = "user image",
                 modifier = Modifier
                     .size(150.dp, 150.dp)
@@ -47,15 +47,16 @@ fun ImageCardItem(
             )
 
             Text(
-                text = imageHit.user,
+                text = article.title,
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 16.sp,
+                maxLines = 2,
                 modifier = Modifier.padding(8.dp)
             )
 
 
             Text(
-                text = imageHit.tags,
+                text = article.source,
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 12.sp,
                 maxLines = 1,
