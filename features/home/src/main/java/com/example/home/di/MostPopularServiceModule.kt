@@ -14,7 +14,7 @@ import io.ktor.client.HttpClient
 object MostPopularServiceModule {
 
     @Provides
-    fun provideImageSearchService(httpClient: HttpClient): MostPopularService {
+    fun provideMostPopularService(httpClient: HttpClient): MostPopularService {
         return MostPopularServiceImpl(httpClient)
     }
 

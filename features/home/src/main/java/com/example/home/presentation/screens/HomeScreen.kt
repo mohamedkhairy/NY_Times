@@ -24,7 +24,6 @@ import com.example.home.presentation.components.PeriodsDropdownMenu
 import com.example.home.presentation.components.shimmerLoading.HomeShimmer
 import com.example.home.domain.enums.Periods.Companion.periodList
 import com.example.sharedData.model.Article
-import com.example.utils.core.ActionState
 import com.example.utils.core.UiState
 import com.example.utils.core.toJsonString
 
@@ -33,17 +32,17 @@ import com.example.utils.core.toJsonString
 internal fun HomeScreenRoute(
     onArticleClick: (String) -> Unit,
     modifier: Modifier = Modifier,
-    searchViewModel: HomeViewModel = hiltViewModel(),
+    homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
-    val resultUiState by searchViewModel.resultUiState.collectAsStateWithLifecycle()
-    val periodQuery by searchViewModel.periodQuery.collectAsStateWithLifecycle()
+    val resultUiState by homeViewModel.resultUiState.collectAsStateWithLifecycle()
+    val periodQuery by homeViewModel.periodQuery.collectAsStateWithLifecycle()
 
 
     HomeScreen(
         onArticleClick = onArticleClick,
         periodQuery = periodQuery,
         resultUiState = resultUiState,
-        onPeriodChanged = searchViewModel::onPeriodChanged,
+        onPeriodChanged = homeViewModel::onPeriodChanged,
     )
 }
 
@@ -131,5 +130,5 @@ internal fun ArticlesResultView(
 
 @Preview
 @Composable
-fun PreviewImageSearchScreen() {
+fun PreviewHomeScreen() {
 }
