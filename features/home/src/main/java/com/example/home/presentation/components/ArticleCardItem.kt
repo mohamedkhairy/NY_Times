@@ -38,7 +38,7 @@ fun ArticleCardItem(
         {
 
             Image(
-                painter = CoilImagePainter(imageUrl = article.images?.first()),
+                painter = CoilImagePainter(imageUrl = article.images),
                 contentDescription = "user image",
                 modifier = Modifier
                     .size(150.dp, 150.dp)

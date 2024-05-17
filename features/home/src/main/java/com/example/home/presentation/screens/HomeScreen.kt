@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.core.ui.component.ViewStateMessage
-import com.example.core.ui.component.dialog.PixabayInfoDialog
+import com.example.core.ui.component.dialog.NyTimesInfoDialog
 import com.example.core.ui.component.scaffold.NYTimesScaffold
 import com.example.home.presentation.components.ArticleCardItem
 import com.example.home.presentation.components.PeriodsDropdownMenu
@@ -139,15 +139,15 @@ internal fun ArticlesResultView(
             })
             when (actionState) {
                 ActionState.NONE -> {
-                    PixabayInfoDialog(
+                    NyTimesInfoDialog(
                         visibility = false,
-                        goToImageDetails = {},
+                        onConfirm = {},
                         onCancel = {})
                 }
 
                 ActionState.ACTION -> {
-                    PixabayInfoDialog(
-                        goToImageDetails = {
+                    NyTimesInfoDialog(
+                        onConfirm = {
                             onImageClick(article.toJsonString())
                             onActionStateChanged(ActionState.NONE)
                         },

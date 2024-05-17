@@ -12,15 +12,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 
 @Composable
-fun PixabayInfoDialog(
-    goToImageDetails: () -> Unit,
+fun NyTimesInfoDialog(
+    onConfirm: () -> Unit,
     onCancel: () -> Unit,
     visibility: Boolean = true
 ) {
     var isDialogVisible by remember {mutableStateOf(visibility)}
 
 
-//    stringResource(R.string.congratulations)
     if (isDialogVisible) {
         AlertDialog(
             onDismissRequest = {},
@@ -37,8 +36,7 @@ fun PixabayInfoDialog(
             confirmButton = {
                 TextButton(
                     onClick = {
-                        goToImageDetails()
-//                        isDialogVisible = false
+                        onConfirm()
                     }
                 ) {
                     Text(text = "Open")
