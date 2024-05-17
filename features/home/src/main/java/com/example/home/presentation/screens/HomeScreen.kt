@@ -36,18 +36,21 @@ internal fun HomeScreenRoute(
     modifier: Modifier = Modifier,
     searchViewModel: HomeViewModel = hiltViewModel(),
 ) {
-    val searchResultUiState by searchViewModel.searchResultUiState.collectAsStateWithLifecycle()
+    val resultUiState by searchViewModel.resultUiState.collectAsStateWithLifecycle()
     val actionState by searchViewModel.actionState.collectAsStateWithLifecycle()
+//    val selectedArticle by searchViewModel.selectedArticle.collectAsStateWithLifecycle()
     val periodQuery by searchViewModel.periodQuery.collectAsStateWithLifecycle()
 
 
     HomeScreen(
         onArticleClick = onArticleClick,
         actionState = actionState,
+//        selectedArticle= selectedArticle,
         periodQuery = periodQuery,
-        searchResultUiState = searchResultUiState,
+        resultUiState = resultUiState,
         onPeriodChanged = searchViewModel::onPeriodChanged,
-        onActionStateChanged = searchViewModel::onActionStateChanged
+        onActionStateChanged = searchViewModel::onActionStateChanged,
+//        onArticleSelected = searchViewModel::onArticleSelected
     )
 }
 
@@ -55,12 +58,12 @@ internal fun HomeScreenRoute(
 fun HomeScreen(
     onArticleClick: (String) -> Unit,
     actionState: ActionState,
+//    selectedArticle: String,
     periodQuery: String,
-    searchResultUiState: UiState<List<Article>?>,
+    resultUiState: UiState<List<Article>?>,
     onPeriodChanged: (String?) -> Unit = {},
     onActionStateChanged: (ActionState) -> Unit = {},
-
-
+//    onArticleSelected: (String) -> Unit = {},
     ) {
 
     NYTimesScaffold(
@@ -74,7 +77,7 @@ fun HomeScreen(
                     .background(MaterialTheme.colorScheme.background)
             ) {
 
-                when (searchResultUiState) {
+                when (resultUiState) {
                     is UiState.Error -> {
                         ViewStateMessage("can't find any result")
                     }
@@ -88,14 +91,16 @@ fun HomeScreen(
                     }
 
                     is UiState.Success -> {
-                        if (searchResultUiState.data.isNullOrEmpty()) {
+                        if (resultUiState.data.isNullOrEmpty()) {
                             ViewStateMessage("can't find any result")
                         } else {
                             ArticlesResultView(
-                                onImageClick = onArticleClick,
+                                onArticleClick = onArticleClick,
                                 actionState = actionState,
-                                articleList = searchResultUiState.data!!,
-                                onActionStateChanged = onActionStateChanged
+//                                selectedArticle = selectedArticle,
+                                articleList = resultUiState.data!!,
+                                onActionStateChanged = onActionStateChanged,
+//                                onArticleSelected = onArticleSelected
                             )
 
                         }
@@ -122,11 +127,13 @@ fun HomeScreen(
 
 @Composable
 internal fun ArticlesResultView(
-    onImageClick: (String) -> Unit,
+    onArticleClick: (String) -> Unit,
     actionState: ActionState,
+//    selectedArticle: String,
     articleList: List<Article>,
     onActionStateChanged: (ActionState) -> Unit = {},
-) {
+//    onArticleSelected: (String) -> Unit = {},
+    ) {
     LazyVerticalGrid(
         contentPadding = PaddingValues(8.dp),
         modifier = Modifier.fillMaxWidth(),
@@ -135,7 +142,10 @@ internal fun ArticlesResultView(
     ) {
         items(items = articleList) { article ->
             ArticleCardItem(article = article, openDetails = {
-                onActionStateChanged(ActionState.ACTION)
+
+                onArticleClick(it.toJsonString())
+//                onArticleSelected(it.toJsonString())
+//                onActionStateChanged(ActionState.ACTION)
             })
             when (actionState) {
                 ActionState.NONE -> {
@@ -148,8 +158,8 @@ internal fun ArticlesResultView(
                 ActionState.ACTION -> {
                     PixabayInfoDialog(
                         goToImageDetails = {
-                            onImageClick(article.toJsonString())
                             onActionStateChanged(ActionState.NONE)
+                            onArticleClick(article.toJsonString())
                         },
                         onCancel = { onActionStateChanged(ActionState.NONE) }
                     )
