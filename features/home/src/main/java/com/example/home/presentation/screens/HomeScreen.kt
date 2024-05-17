@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.core.ui.component.ViewStateMessage
-import com.example.core.ui.component.dialog.NyTimesInfoDialog
 import com.example.core.ui.component.scaffold.NYTimesScaffold
 import com.example.home.presentation.components.ArticleCardItem
 import com.example.home.presentation.components.PeriodsDropdownMenu
@@ -36,31 +35,24 @@ internal fun HomeScreenRoute(
     modifier: Modifier = Modifier,
     searchViewModel: HomeViewModel = hiltViewModel(),
 ) {
-    val searchResultUiState by searchViewModel.searchResultUiState.collectAsStateWithLifecycle()
-    val actionState by searchViewModel.actionState.collectAsStateWithLifecycle()
+    val resultUiState by searchViewModel.resultUiState.collectAsStateWithLifecycle()
     val periodQuery by searchViewModel.periodQuery.collectAsStateWithLifecycle()
 
 
     HomeScreen(
         onArticleClick = onArticleClick,
-        actionState = actionState,
         periodQuery = periodQuery,
-        searchResultUiState = searchResultUiState,
+        resultUiState = resultUiState,
         onPeriodChanged = searchViewModel::onPeriodChanged,
-        onActionStateChanged = searchViewModel::onActionStateChanged
     )
 }
 
 @Composable
 fun HomeScreen(
     onArticleClick: (String) -> Unit,
-    actionState: ActionState,
     periodQuery: String,
-    searchResultUiState: UiState<List<Article>?>,
+    resultUiState: UiState<List<Article>?>,
     onPeriodChanged: (String?) -> Unit = {},
-    onActionStateChanged: (ActionState) -> Unit = {},
-
-
     ) {
 
     NYTimesScaffold(
@@ -74,7 +66,7 @@ fun HomeScreen(
                     .background(MaterialTheme.colorScheme.background)
             ) {
 
-                when (searchResultUiState) {
+                when (resultUiState) {
                     is UiState.Error -> {
                         ViewStateMessage("can't find any result")
                     }
@@ -88,14 +80,12 @@ fun HomeScreen(
                     }
 
                     is UiState.Success -> {
-                        if (searchResultUiState.data.isNullOrEmpty()) {
+                        if (resultUiState.data.isNullOrEmpty()) {
                             ViewStateMessage("can't find any result")
                         } else {
                             ArticlesResultView(
-                                onImageClick = onArticleClick,
-                                actionState = actionState,
-                                articleList = searchResultUiState.data!!,
-                                onActionStateChanged = onActionStateChanged
+                                onArticleClick = onArticleClick,
+                                articleList = resultUiState.data!!,
                             )
 
                         }
@@ -122,11 +112,9 @@ fun HomeScreen(
 
 @Composable
 internal fun ArticlesResultView(
-    onImageClick: (String) -> Unit,
-    actionState: ActionState,
+    onArticleClick: (String) -> Unit,
     articleList: List<Article>,
-    onActionStateChanged: (ActionState) -> Unit = {},
-) {
+    ) {
     LazyVerticalGrid(
         contentPadding = PaddingValues(8.dp),
         modifier = Modifier.fillMaxWidth(),
@@ -135,26 +123,8 @@ internal fun ArticlesResultView(
     ) {
         items(items = articleList) { article ->
             ArticleCardItem(article = article, openDetails = {
-                onActionStateChanged(ActionState.ACTION)
+                onArticleClick(it.toJsonString())
             })
-            when (actionState) {
-                ActionState.NONE -> {
-                    NyTimesInfoDialog(
-                        visibility = false,
-                        onConfirm = {},
-                        onCancel = {})
-                }
-
-                ActionState.ACTION -> {
-                    NyTimesInfoDialog(
-                        onConfirm = {
-                            onImageClick(article.toJsonString())
-                            onActionStateChanged(ActionState.NONE)
-                        },
-                        onCancel = { onActionStateChanged(ActionState.NONE) }
-                    )
-                }
-            }
         }
     }
 }

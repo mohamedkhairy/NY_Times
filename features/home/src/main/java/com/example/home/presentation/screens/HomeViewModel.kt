@@ -24,9 +24,8 @@ class HomeViewModel @Inject constructor(
 
 
     val periodQuery = savedStateHandle.getStateFlow(key = PERIODS_QUERY, initialValue = "30")
-    val actionState = savedStateHandle.getStateFlow(key = ACTION, initialValue = ActionState.NONE)
 
-    val searchResultUiState: StateFlow<UiState<List<Article>?>> =
+    val resultUiState: StateFlow<UiState<List<Article>?>> =
         periodQuery.flatMapLatest { query ->
              mostPopularUseCase(query)
         }.stateIn(
@@ -39,11 +38,7 @@ class HomeViewModel @Inject constructor(
         savedStateHandle[PERIODS_QUERY] = query
     }
 
-    fun onActionStateChanged(actionState: ActionState) {
-        savedStateHandle[ACTION] = actionState
-    }
 
 }
 
 private const val PERIODS_QUERY = "periodQuery"
-private const val ACTION = "action_state"
