@@ -2,6 +2,7 @@ package com.example.home.domain.enums
 
 import com.example.nytimes.R
 
+
 enum class Periods (val value: String,val periodName: Int){
     LAST_DAY("1", R.string.last_day),
     LAST_WEEK("7", R.string.last_week),

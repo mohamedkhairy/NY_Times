@@ -10,7 +10,7 @@ data class Article(
 //    val etaId: Int,
 //    val geoFacet: List<String>,
     val id: Long,
-    val images: List<String>?,
+    val images: String?,
 //    val nytdsection: String,
 //    val orgFacet: List<String>,
 //    val perFacet: List<String>,
