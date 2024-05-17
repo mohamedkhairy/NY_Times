@@ -37,33 +37,23 @@ internal fun HomeScreenRoute(
     searchViewModel: HomeViewModel = hiltViewModel(),
 ) {
     val resultUiState by searchViewModel.resultUiState.collectAsStateWithLifecycle()
-    val actionState by searchViewModel.actionState.collectAsStateWithLifecycle()
-//    val selectedArticle by searchViewModel.selectedArticle.collectAsStateWithLifecycle()
     val periodQuery by searchViewModel.periodQuery.collectAsStateWithLifecycle()
 
 
     HomeScreen(
         onArticleClick = onArticleClick,
-        actionState = actionState,
-//        selectedArticle= selectedArticle,
         periodQuery = periodQuery,
         resultUiState = resultUiState,
         onPeriodChanged = searchViewModel::onPeriodChanged,
-        onActionStateChanged = searchViewModel::onActionStateChanged,
-//        onArticleSelected = searchViewModel::onArticleSelected
     )
 }
 
 @Composable
 fun HomeScreen(
     onArticleClick: (String) -> Unit,
-    actionState: ActionState,
-//    selectedArticle: String,
     periodQuery: String,
     resultUiState: UiState<List<Article>?>,
     onPeriodChanged: (String?) -> Unit = {},
-    onActionStateChanged: (ActionState) -> Unit = {},
-//    onArticleSelected: (String) -> Unit = {},
     ) {
 
     NYTimesScaffold(
@@ -96,11 +86,7 @@ fun HomeScreen(
                         } else {
                             ArticlesResultView(
                                 onArticleClick = onArticleClick,
-                                actionState = actionState,
-//                                selectedArticle = selectedArticle,
                                 articleList = resultUiState.data!!,
-                                onActionStateChanged = onActionStateChanged,
-//                                onArticleSelected = onArticleSelected
                             )
 
                         }
@@ -128,11 +114,7 @@ fun HomeScreen(
 @Composable
 internal fun ArticlesResultView(
     onArticleClick: (String) -> Unit,
-    actionState: ActionState,
-//    selectedArticle: String,
     articleList: List<Article>,
-    onActionStateChanged: (ActionState) -> Unit = {},
-//    onArticleSelected: (String) -> Unit = {},
     ) {
     LazyVerticalGrid(
         contentPadding = PaddingValues(8.dp),
@@ -142,29 +124,8 @@ internal fun ArticlesResultView(
     ) {
         items(items = articleList) { article ->
             ArticleCardItem(article = article, openDetails = {
-
                 onArticleClick(it.toJsonString())
-//                onArticleSelected(it.toJsonString())
-//                onActionStateChanged(ActionState.ACTION)
             })
-            when (actionState) {
-                ActionState.NONE -> {
-                    PixabayInfoDialog(
-                        visibility = false,
-                        goToImageDetails = {},
-                        onCancel = {})
-                }
-
-                ActionState.ACTION -> {
-                    PixabayInfoDialog(
-                        goToImageDetails = {
-                            onActionStateChanged(ActionState.NONE)
-                            onArticleClick(article.toJsonString())
-                        },
-                        onCancel = { onActionStateChanged(ActionState.NONE) }
-                    )
-                }
-            }
         }
     }
 }
