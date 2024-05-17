@@ -19,6 +19,8 @@ dependencies {
     "implementation"(libs.bundles.kotlinCoroutines)
     "implementation"(project(":core:utils"))
     "implementation"(project(":core:ui"))
+    "implementation"(project(":core:sharedData"))
+
 
 
 }

@@ -13,97 +13,114 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.core.ui.component.CoilImagePainter
-import com.example.utils.model.Hit
+import com.example.core.ui.component.scaffold.NYTimesScaffold
+import com.example.sharedData.model.Article
 
 
 @Composable
 internal fun DetailsRoute(
     onBackClick: () -> Unit,
-    imageHit: Hit?,
+    article: Article?,
 ) {
 
-    HomeSearchScreen(
-        imageHit = imageHit,
+    ArticleDetailsScreen(
+        article = article,
         onBackClick = onBackClick,
     )
 
 }
 
 @Composable
-fun HomeSearchScreen(
-    imageHit: Hit?,
+fun ArticleDetailsScreen(
+    article: Article?,
     onBackClick: () -> Unit
 ) {
 
-    imageHit?.let {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-                .background(MaterialTheme.colorScheme.background)
-        ) {
+    NYTimesScaffold(
+        content = {
             Column(
-                Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.Center
-            )
-            {
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it)
+                    .background(MaterialTheme.colorScheme.background)
+            ) {
 
-                Image(
-                    painter = CoilImagePainter(imageUrl = imageHit.largeImageURL),
-                    contentDescription = "user image",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                        .align(Alignment.CenterHorizontally)
-                )
+                article?.let {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp)
+                            .background(MaterialTheme.colorScheme.background)
+                    ) {
+                        Column(
+                            Modifier.fillMaxWidth(),
+                            verticalArrangement = Arrangement.Center
+                        )
+                        {
 
-                Text(
-                    text = "User: ${imageHit.user}",
-                    color = MaterialTheme.colorScheme.primary,
-                    fontSize = 16.sp,
-                    modifier = Modifier.padding(8.dp)
-                )
+                            Image(
+                                painter = CoilImagePainter(
+                                    imageUrl = article.images
+                                ),
+                                contentDescription = "article image",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                                    .align(Alignment.CenterHorizontally)
+                            )
 
-
-                Text(
-                    text = "Tags: ${imageHit.tags}",
-                    color = MaterialTheme.colorScheme.primary,
-                    fontSize = 16.sp,
-                    maxLines = 1,
-                    modifier = Modifier.padding(8.dp)
-                )
-
-                Text(
-                    text = "Likes: ${imageHit.likes}",
-                    color = MaterialTheme.colorScheme.primary,
-                    fontSize = 16.sp,
-                    maxLines = 1,
-                    modifier = Modifier.padding(8.dp)
-                )
+                            Text(
+                                text = "Title: ${article.title}",
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.padding(8.dp)
+                            )
 
 
-                Text(
-                    text = "Downloads: ${imageHit.downloads}",
-                    color = MaterialTheme.colorScheme.primary,
-                    fontSize = 16.sp,
-                    maxLines = 1,
-                    modifier = Modifier.padding(8.dp)
-                )
+                            Text(
+                                text = article.abstract,
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelMedium,
+                                modifier = Modifier.padding(8.dp)
+                            )
 
-                Text(
-                    text = "Comments: ${imageHit.comments}",
-                    color = MaterialTheme.colorScheme.primary,
-                    fontSize = 16.sp,
-                    maxLines = 1,
-                    modifier = Modifier.padding(8.dp)
-                )
+                            Text(
+                                text = "Source: ${article.source}",
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1,
+                                modifier = Modifier.padding(8.dp)
+                            )
+
+
+                            Text(
+                                text = "Publish Date: ${article.publishedDate}",
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1,
+                                modifier = Modifier.padding(8.dp)
+                            )
+
+                            Text(
+                                text = "Section: ${article.section}",
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelMedium,
+                                maxLines = 1,
+                                modifier = Modifier.padding(8.dp)
+                            )
+
+
+                        }
+                    }
+
+
+                }
 
 
             }
-        }
 
 
-    }
+        }, icon = {}
+    )
 }
