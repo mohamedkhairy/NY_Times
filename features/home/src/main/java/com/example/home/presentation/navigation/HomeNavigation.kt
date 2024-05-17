@@ -4,20 +4,20 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.example.home.presentation.screens.HomeSearchRoute
+import com.example.home.presentation.screens.HomeScreenRoute
 
-const val HOME_SEARCH_ROUTE = "home_search_route"
+const val HOME_ROUTE = "home_search_route"
 
-fun NavController.navigateToSearch(navOptions: NavOptions? = null) =
-    navigate(HOME_SEARCH_ROUTE, navOptions)
+fun NavController.navigateToHome(navOptions: NavOptions? = null) =
+    navigate(HOME_ROUTE, navOptions)
 
-fun NavGraphBuilder.searchScreen(
-    onImageClick: (String) -> Unit
+fun NavGraphBuilder.homeScreen(
+    onArticleClick: (String) -> Unit
 ) {
 
-    composable(route = HOME_SEARCH_ROUTE) {
-        HomeSearchRoute(
-            onImageClick = onImageClick
+    composable(route = HOME_ROUTE) {
+        HomeScreenRoute(
+            onArticleClick = onArticleClick
         )
     }
 }

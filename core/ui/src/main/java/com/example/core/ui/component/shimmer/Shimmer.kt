@@ -19,9 +19,7 @@ import androidx.compose.ui.graphics.Color
 fun Shimmer(
     baseColor: Color = MaterialTheme.colorScheme.background,
     highlightColor: Color = MaterialTheme.colorScheme.primary,
-    durationMillis: Int = 1000,
-    content: () -> Unit
-) {
+    durationMillis: Int = 1000) {
     val shimmerColors = listOf(
         baseColor,
         highlightColor,
@@ -46,6 +44,5 @@ fun Shimmer(
 
     Canvas(modifier = Modifier.fillMaxSize()) {
         drawRect(brush = brush)
-        content()
     }
 }

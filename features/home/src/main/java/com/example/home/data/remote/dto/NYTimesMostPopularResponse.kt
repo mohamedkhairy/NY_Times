@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NYTimesMostPopularResponse(
     @SerialName("copyright")
-    val copyright: String,
+    val copyright: String?,
     @SerialName("num_results")
-    val numResults: Int,
+    val numResults: Int?,
     @SerialName("results")
     val articleResponses: List<ArticleResponse>?,
     @SerialName("status")
-    val status: String
+    val status: String?
 )

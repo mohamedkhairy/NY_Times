@@ -1,4 +1,4 @@
-package com.example.sharedData.enums
+package com.example.home.domain.enums
 
 import com.example.nytimes.R
 
@@ -8,6 +8,8 @@ enum class Periods (val value: String,val periodName: Int){
     LAST_MONTH("30", R.string.last_month);
 
     companion object{
-        fun getPeriod(periodValue: String) = Periods.entries.first { it.name == periodValue}
+        fun getPeriod(periodValue: String) = Periods.entries.first { it.value == periodValue}
+
+        fun periodList() = Periods.entries.toList()
     }
 }

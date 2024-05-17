@@ -27,26 +27,6 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavigationSystem()
                     }
-
-//                NYTimesScaffold(
-//                    content = {
-//                    Column(
-//                        modifier = Modifier
-//                            .padding(it)
-//                            .fillMaxSize()
-//                    ) {
-//                        NavigationSystem()
-//                    }
-//                }, icon = {
-//                    Icon(
-//                        imageVector = Icons.Filled.Settings,
-//                        tint = Color.White,
-//                        contentDescription = "Settings",
-//                        modifier = Modifier.padding(8.dp)
-//                    )
-//                }
-//                )
-
             }
         }
     }
@@ -64,7 +44,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    com.example.core.ui.theme.NYTimesTheme {
+    NYTimesTheme {
         Greeting("Android")
     }
 }

@@ -8,10 +8,6 @@ import io.ktor.http.set
 
 object Endpoints {
 
-//    http://api.nytimes.com/svc/
-    //    mostpopular/v2/viewed/{period}.json?
-    //    api-key=sample-key
-
 
     const val BASE_URL = BuildConfig.BASE_URL
     const val DSF = "mostpopular/v2/viewed/"

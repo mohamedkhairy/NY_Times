@@ -5,8 +5,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.details.navigation.detailsScreen
 import com.example.details.navigation.navigateToDetails
-import com.example.home.presentation.navigation.HOME_SEARCH_ROUTE
-import com.example.home.presentation.navigation.searchScreen
+import com.example.home.presentation.navigation.HOME_ROUTE
+import com.example.home.presentation.navigation.homeScreen
 
 
 @Composable
@@ -16,15 +16,15 @@ fun NavigationSystem() {
 
     NavHost(
         navController = navController,
-        startDestination = HOME_SEARCH_ROUTE,
+        startDestination = HOME_ROUTE,
         builder = {
-            searchScreen(
-                onImageClick = {
+            homeScreen(
+                onArticleClick = {
                     navController.navigateToDetails(it)
                 }
             )
             detailsScreen {
-                navController.popBackStack(HOME_SEARCH_ROUTE, false)
+                navController.popBackStack(HOME_ROUTE, false)
             }
         }
     )
