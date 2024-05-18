@@ -5,7 +5,6 @@ apply {
 }
 
 plugins {
-    alias(libs.plugins.ksp)
     id("kotlinx-serialization")
 }
 
@@ -20,12 +19,16 @@ dependencies {
     "implementation"(libs.ktorAndroid)
     "implementation"(libs.bundles.archComponents)
     "implementation"(libs.bundles.kotlinCoroutines)
-    "implementation"(libs.bundles.room)
-    "ksp"(libs.roomCompiler)
+
     "implementation"(project(":core:sharedData"))
     "implementation"(project(":core:network"))
     "implementation"(project(":core:utils"))
     "implementation"(project(":core:ui"))
+
+
+    "testImplementation"(libs.ktor.client.mock)
+    "testImplementation"(libs.ktorContentNegotiation)
+    "testImplementation"(libs.ktorSerialization)
 
 
 }

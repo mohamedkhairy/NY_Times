@@ -26,6 +26,4 @@ fun <T> Flow<T>.obtainOutcome(): Flow<UiState<T>> =
     this.map { UiState.success(it) }
         .onStart { emit(UiState.Loading(true)) }
         .catch { e ->
-            Log.e("FlowUseCase", e.message, e)
             emit(UiState.Error(e)) }
-//        .onCompletion { emit(UiState.Loading(false)) }

@@ -26,8 +26,6 @@ kotlinCoroutines = "1.7.1"
 ktorVersion = "2.3.11"
 serializationVersion = "1.6.3"
 serialization-plugin = "1.6.21"
-#Database
-roomVersion = "2.6.1"
 
 
 # UI
@@ -94,11 +92,6 @@ ktorSerialization = { module = "io.ktor:ktor-serialization-kotlinx-json", versio
 
 serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationVersion" }
 
-#Database
-room = {  module = "androidx.room:room-runtime" , version.ref = "roomVersion" }
-roomKtx = {  module = "androidx.room:room-ktx" , version.ref = "roomVersion" }
-roomCompiler = {  module = "androidx.room:room-compiler" , version.ref = "roomVersion" }
-
 
 # Hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -118,7 +111,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktorVersion" }
+
 
 [bundles]
 archComponents = ["viewModel", "lifeData", "lifecycle"]
@@ -133,7 +127,7 @@ networking = [
     "ktorSerialization",
     "serialization"]
 kotlinCoroutines = ["coroutinesCore", "coroutinesAndroid"]
-room = ["room" , "roomKtx"]
+
 jetpackCompost = [
     "androidx-activity-compose",
     "androidx-ui",

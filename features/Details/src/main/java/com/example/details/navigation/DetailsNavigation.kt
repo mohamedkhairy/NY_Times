@@ -40,7 +40,7 @@ fun NavGraphBuilder.detailsScreen(
 
         val article = it.arguments?.getString(ARTICLE_DETAILS_ARG)
         DetailsRoute(
-            article = article?.jsonParse(Article::class.java),
+            article = article?.jsonParse<Article>(),
             onBackClick = onBackClick
         )
     }
