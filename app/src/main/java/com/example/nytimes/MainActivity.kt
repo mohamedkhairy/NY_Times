@@ -21,12 +21,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NYTimesTheme {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                    ) {
-                        NavigationSystem()
-                    }
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    NavigationSystem()
+                }
             }
         }
     }

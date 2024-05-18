@@ -10,8 +10,6 @@ import com.example.home.engine.ServiceResponseType
 import com.example.home.fakeData.MostPopularValid
 import com.example.sharedData.model.Article
 import com.example.utils.core.UiState
-import io.ktor.client.call.NoTransformationFoundException
-import io.ktor.serialization.JsonConvertException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList

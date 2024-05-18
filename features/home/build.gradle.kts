@@ -1,5 +1,3 @@
-import com.google.android.libraries.mapsplatform.secrets_gradle_plugin.androidProject
-
 apply {
     from("$rootDir/android-library-build.gradle")
 }

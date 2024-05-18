@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.home.domain.useCase.MostPopularUseCase
 import com.example.sharedData.model.Article
-import com.example.utils.core.ActionState
 import com.example.utils.core.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

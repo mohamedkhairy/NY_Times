@@ -3,8 +3,6 @@ package com.example.network.di
 import com.example.nytimes.core.network.BuildConfig
 import io.ktor.http.URLBuilder
 import io.ktor.http.appendPathSegments
-import io.ktor.http.path
-import io.ktor.http.set
 
 object Endpoints {
 

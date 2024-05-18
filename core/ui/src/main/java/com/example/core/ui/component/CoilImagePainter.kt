@@ -1,6 +1,5 @@
 package com.example.core.ui.component
 
-import androidx.appcompat.R
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme

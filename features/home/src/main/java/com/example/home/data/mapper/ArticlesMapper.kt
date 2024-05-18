@@ -1,6 +1,5 @@
 package com.example.home.data.mapper
 
-import com.example.home.data.remote.dto.Media
 import com.example.home.data.remote.dto.NYTimesMostPopularResponse
 import com.example.sharedData.model.Article
 import com.example.utils.mapper.BaseMapper

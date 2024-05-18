@@ -1,9 +1,7 @@
 package com.example.home.domain.useCase
 
-import android.util.Log
 import com.example.home.domain.repository.MostPopularRepository
 import com.example.sharedData.model.Article
-import com.example.utils.core.toJsonString
 import com.example.utils.usecases.FlowUseCase
 import com.paymob.pos.utils.dispatchers.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher

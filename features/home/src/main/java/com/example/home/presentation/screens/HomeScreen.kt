@@ -19,10 +19,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.core.ui.component.ViewStateMessage
 import com.example.core.ui.component.scaffold.NYTimesScaffold
+import com.example.home.domain.enums.Periods.Companion.periodList
 import com.example.home.presentation.components.ArticleCardItem
 import com.example.home.presentation.components.PeriodsDropdownMenu
 import com.example.home.presentation.components.shimmerLoading.HomeShimmer
-import com.example.home.domain.enums.Periods.Companion.periodList
 import com.example.sharedData.model.Article
 import com.example.utils.core.UiState
 import com.example.utils.core.toJsonString
