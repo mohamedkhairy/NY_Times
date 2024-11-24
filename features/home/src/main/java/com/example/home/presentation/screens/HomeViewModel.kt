@@ -24,6 +24,7 @@ class HomeViewModel @Inject constructor(
 
     val periodQuery = savedStateHandle.getStateFlow(key = PERIODS_QUERY, initialValue = "30")
 
+
     val resultUiState: StateFlow<UiState<List<Article>?>> =
         periodQuery.flatMapLatest { query ->
              mostPopularUseCase(query)
